@@ -25,7 +25,7 @@ The goals / steps of this project are the following:
 [image6]: ./webimages/3.png "Traffic Sign 3"
 [image7]: ./webimages/4.png "Traffic Sign 4"
 [image8]: ./webimages/5.png "Traffic Sign 5"
-[image8]: ./doc/certainty.png "Certainty"
+[image9]: ./doc/certainty.png "Certainty"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -96,7 +96,10 @@ My final model consisted of the following layers:
 Before training I filled the weights and biases in the model with random_normal numbers, with sigma = 0.1 and mu = 0 values. 
 
 I used the Adam optimizer with a learning rate of 0.001.
-I measured the cross entropy between the logits and the expected outcome, and took the mean values of CEs across the batch to feed the optimizers minimize() function.
+I measured the cross entropy between the logits and the expected outcome, and took the mean values of CEs across the batch to feed the optimizers minimize() function. Batch size was 128 and I used 60 epochs.
+
+Analyzing the training and validation accuracies especially the differencies between the training and validation accuracies show that the model is overtraining. Experimenting further with different kind of regularizations method could further improve the validation and test accuracy.
+
 
 
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
@@ -127,7 +130,7 @@ Here are five German traffic signs that I found on the web:
 ![alt text][image4] ![alt text][image5] ![alt text][image6] 
 ![alt text][image7] ![alt text][image8]
 
-The first image might be difficult to classify because ...
+The images are of relatively good quality. Difficulties in classification might arise from shadows (image 1), over-exposure (3), blue fringing (3) and under-exposure. I did normalize the images so that the exposure problems are lessened to a manageable level.
 
 #### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
 
@@ -135,19 +138,17 @@ Here are the results of the prediction:
 
 | Image			        |     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Road narrows on the right   									| 
-| U-turn     			| Go straight or left  										|
-| Yield					| Wild animals crossing   							|
-| 100 km/h	      		| Priority road			 				|
-| Slippery Road			| Bumpy road        							|
-
-TODO
+| Road narrows on the right      		| Road narrows on the right   									| 
+| Go straight or left    			| Go straight or left  										|
+| Wild animals crossing				| Wild animals crossing   							|
+| Priority road	      		| Priority road			 				|
+| Bumpy road  			| Bumpy road        							|
 
 The model was able to correctly guess all the 5 traffic signs, which gives an accuracy of 100%. Of course this 100% is only possible because of the small number of signs. Accuracy would converge to the test accuracy, had we have more signs.
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. 
 
-The below image shows for all 5 signs the softmax probabilities for the top 5 values each. Signs correspond to rows, probabilities to columns. Note that softmaxing 43 classes caused the otherwise big differences between logits become quite small. 
+The below image shows for all 5 signs the softmax probabilities for the top 5 values each. Signs correspond to rows, probabilities to columns. Note that softmaxing 43 classes caused the otherwise big differences between logits become much smaller. Reason: the softmax method allows for 1 percentages even for logits of zero values, exhausting the available 100 percents fast. Looking at logits (not displayed here) we can see that the prediction was quite confident in its choices. Much more confident than the below images suggest.
 
 ![Certainty][image9]
 
