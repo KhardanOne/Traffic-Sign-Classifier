@@ -18,13 +18,14 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/visualization.jpg "Visualization"
-[image2]: ./examples/grayscale.jpg "Grayscaling"
-[image4]: ./examples/placeholder.png "Traffic Sign 1"
-[image5]: ./examples/placeholder.png "Traffic Sign 2"
-[image6]: ./examples/placeholder.png "Traffic Sign 3"
-[image7]: ./examples/placeholder.png "Traffic Sign 4"
-[image8]: ./examples/placeholder.png "Traffic Sign 5"
+[image1]: ./doc/frequency.png "Sign Frequency"
+[image2]: ./doc/grayscale.png "Grayscaling"
+[image4]: ./webimages/1.png "Traffic Sign 1"
+[image5]: ./webimages/2.png "Traffic Sign 2"
+[image6]: ./webimages/3.png "Traffic Sign 3"
+[image7]: ./webimages/4.png "Traffic Sign 4"
+[image8]: ./webimages/5.png "Traffic Sign 5"
+[image8]: ./doc/certainty.png "Certainty"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -50,7 +51,7 @@ This is it! and here is a link to my [project code](https://github.com/KhardanOn
 
 Here is an exploratory visualization of the data set. It is a histogram showing how the distribution of signs across the three sets.
 
-![alt text][image1] TODO
+![Sign Frequency][image1]
 
 The image shows that the distribution among the three sets is quite similar to each other.
 
@@ -63,7 +64,7 @@ As a first step, I converted the images to grayscale.
 
 Here is an example of a traffic sign after grayscaling.
 
-![alt text][image2] TODO
+![Grayscaling][image2]
 
 As a last step, I normalized the image.
 
@@ -103,7 +104,7 @@ I measured the cross entropy between the logits and the expected outcome, and to
 My final model results were:
 * training set accuracy of 100%
 * validation set accuracy of 95% 
-* test set accuracy of ? TODO *************************************************************************
+* test set accuracy of 93.7%
 
 This is a result of an iterative process.
 * First I did not specify the sigma value for generating inital variables. That resulted in 0% accuracy. So I chose a sigma value of 0.1
@@ -142,23 +143,13 @@ Here are the results of the prediction:
 
 TODO
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+The model was able to correctly guess all the 5 traffic signs, which gives an accuracy of 100%. Of course this 100% is only possible because of the small number of signs. Accuracy would converge to the test accuracy, had we have more signs.
 
-#### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
+#### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. 
 
-The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
+The below image shows for all 5 signs the softmax probabilities for the top 5 values each. Signs correspond to rows, probabilities to columns. Note that softmaxing 43 classes caused the otherwise big differences between logits become quite small. 
 
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
+![Certainty][image9]
 
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
-
-
-For the second image ... 
 
 
