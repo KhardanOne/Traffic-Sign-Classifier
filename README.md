@@ -3,6 +3,8 @@
 ## Project: Build a Traffic Sign Recognition Program
 This is my solution for the great Udacity - Self-Driving Car NanoDegree program's project. [![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive) <BR>
  
+# WARNING!
+This is a learning material, one of my very first Python / numpy / OpenCV projects. Do not expect any quality.
 
 [Writeup](writeup.md)<BR>
 [Writeup in html format](Traffic_Sign_Classifier.html)<BR>
